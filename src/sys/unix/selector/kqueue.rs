@@ -868,6 +868,14 @@ pub mod event {
     }
 }
 
+// No special requirement from the implementation around waking.
+pub(crate) use crate::sys::unix::waker::Waker;
+
+cfg_io_source! {
+    mod stateless_io_source;
+    pub(crate) use stateless_io_source::IoSourceState;
+}
+
 #[test]
 #[cfg(feature = "os-ext")]
 fn does_not_register_rw() {
